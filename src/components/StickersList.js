@@ -3,14 +3,16 @@ import StickerItem from "./StickerItem";
 
 
 function StickersList(props) {
-    console.log(props);
-    const {stickersList, onAdd} = props;
+    const {stickersList, onAdd, onChange, onDelete} = props;
     return (
         <>
-            <button onClick={()=> onAdd()}>add</button>
+            <button onClick={()=> onAdd()}>add sticker</button>
             {
                 stickersList.map((sticker)=>
-                    <StickerItem key={sticker.id} item={sticker} />
+                    <StickerItem key={sticker.id}
+                                 item={sticker}
+                                 onChange={onChange}
+                                 onDelete={onDelete}/>
                 )
             }
        </>
