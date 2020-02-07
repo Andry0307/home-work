@@ -1,33 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
+import StickerItem from "./StickerItem";
+
 
 function StickersList(props) {
-    const [stickersList, setStickersList] = useState([{
-            id: Date.now(),
-            title: 'dsds',
-            text: 'dsds'
-    }]);
-    console.log('_____-stickersList', stickersList);
-
-    function addSticker() {
-        setStickersList([ ...stickersList,
-            {
-            id: Date.now(),
-            title: '',
-            text: ''
-        }])
-    }
+    console.log(props);
+    const {stickersList, onAdd} = props;
     return (
-        <div>
+        <>
+            <button onClick={()=> onAdd()}>add</button>
             {
-            stickersList.map((item) =>
-                <div key={item.id}>
-                    <span>{item.title}</span>
-                    <p><textarea  defaultValue={item.text}></textarea></p>
-                </div>
-            )
-        }
-        <button onClick={addSticker}>addStickers</button>
-        </div>
+                stickersList.map((sticker)=>
+                    <StickerItem key={sticker.id} item={sticker} />
+                )
+            }
+       </>
     );
 }
 
